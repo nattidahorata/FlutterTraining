@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nut_qr_code/screens/register.dart';
 
 class Home extends StatefulWidget {
   // send data
@@ -7,13 +8,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  //create staleless
+  // create staleless
 
-  //Explicit
+  // Explicit
   double mySize = 180.0;
   Color myColor = Colors.blue[200];
 
-  //Methods
+  // Methods
   Widget mySizeBox() {
     return SizedBox(
       width: 6.0,
@@ -32,7 +33,13 @@ class _HomeState extends State<Home> {
           "Sign Up",
           style: TextStyle(color: myColor),
         ),
-        onPressed: () {},
+        onPressed: () {
+          print("You Click Sign Up.");
+          // Create Route Can Back
+          MaterialPageRoute materialPageRoute =
+              MaterialPageRoute(builder: (BuildContext context) => Register());
+          Navigator.of(context).push(materialPageRoute);
+        },
       ),
     );
   }
