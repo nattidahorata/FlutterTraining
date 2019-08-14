@@ -58,7 +58,7 @@ class _RegisterState extends State<Register> {
       ),
       validator: (String value) {
         if (!((value.contains('@')) && (value.contains('.')))) {
-          return 'Please keep Email Format.';
+          return "Please keep Email Format.";
         }
       },
       onSaved: (String value) {
