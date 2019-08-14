@@ -11,12 +11,27 @@ class _HomeState extends State<Home> {
 
   //Explicit
   double mySize = 180.0;
+  Color myColor = Colors.blue[200];
 
   //Methods
+  Widget mySizeBox() {
+    return SizedBox(
+      width: 6.0,
+      height: 12.0,
+    );
+  }
+
   Widget signUpButton() {
     return Expanded(
       child: OutlineButton(
-        child: Text("Sign Up"),
+        borderSide: BorderSide(color: myColor),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        child: Text(
+          "Sign Up",
+          style: TextStyle(color: myColor),
+        ),
         onPressed: () {},
       ),
     );
@@ -26,7 +41,8 @@ class _HomeState extends State<Home> {
     return Expanded(
       child: RaisedButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          // side: BorderSide(color: myColor),
+          borderRadius: BorderRadius.circular(30.0),
         ),
         color: Colors.blue[200],
         child: Text(
@@ -45,6 +61,7 @@ class _HomeState extends State<Home> {
       child: Row(
         children: <Widget>[
           signInBotton(),
+          mySizeBox(),
           signUpButton(),
         ],
       ),
@@ -79,13 +96,22 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     //theme
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          showLogo(),
-          showAppName(),
-          showButtom(),
-        ],
+      body: Container(
+        // color: Colors.blue,
+        decoration: BoxDecoration(
+            gradient: RadialGradient(
+                colors: [Colors.white, Colors.blue],
+                radius: 1.0,
+                center: Alignment.center)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            showLogo(),
+            mySizeBox(),
+            showAppName(),
+            showButtom(),
+          ],
+        ),
       ),
     );
   }
