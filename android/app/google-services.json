@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "338585015544",
+    "firebase_url": "https://fluttertraining-2f1b5.firebaseio.com",
+    "project_id": "fluttertraining-2f1b5",
+    "storage_bucket": "fluttertraining-2f1b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338585015544:android:5c6c919f1c1ef8fa",
+        "android_client_info": {
+          "package_name": "th.in.androidthai.nut_qr_code"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338585015544-khfjto9458ciirhhhbnsrpvsfa2dlipr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgMDwsKnjyDnDzahqiGEKIMXRHiYB9YM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338585015544-khfjto9458ciirhhhbnsrpvsfa2dlipr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
