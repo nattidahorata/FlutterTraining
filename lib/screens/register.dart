@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:nut_qr_code/screens/my_service.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class _RegisterState extends State<Register> {
   Color passwordColor = Colors.blueGrey[700];
   final formKey = GlobalKey<FormState>();
   String nameString, emailSring, passwordString;
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   // Methods
   Widget nameText() {
@@ -101,9 +104,68 @@ class _RegisterState extends State<Register> {
           formKey.currentState.save();
           print(
               'name = $nameString, email = $emailSring, pass = $passwordString');
+          registerThread();
         }
       },
     );
+  }
+
+  Future<void> registerThread() async {
+    // void = not return
+
+    await firebaseAuth
+        .createUserWithEmailAndPassword(
+      email: emailSring,
+      password: passwordString,
+    )
+        .then((response) {
+      print("Register Success.");
+      setupDisplayName();
+    }).catchError((response) {
+      print("Respones: $response");
+      String title = response.code;
+      String message = response.message;
+      myAlert(title, message);
+    });
+  }
+
+  Future<void> setupDisplayName() async {
+    FirebaseUser firebaseUser = await firebaseAuth.currentUser();
+    UserUpdateInfo userUpdateInfo = UserUpdateInfo();
+
+    userUpdateInfo.displayName = nameString;
+    firebaseUser.updateProfile(userUpdateInfo);
+
+    MaterialPageRoute materialPageRoute =
+        MaterialPageRoute(builder: (BuildContext context) => MyService());
+    Navigator.of(context)
+        .pushAndRemoveUntil(materialPageRoute, (Route<dynamic> route) => false);
+  }
+
+  void myAlert(String title, String message) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            // title: Text(title),
+            title: ListTile(
+              leading: Icon(Icons.add_alert),
+              title: Text(
+                title,
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+            content: Text(message),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
   }
 
   @override
